@@ -6,6 +6,7 @@ import Image from 'next/image';
 import avater from '@/assets/user.png'
 // import { authClient } from '@/lib/auth-client';
 import NavLink from './NavLink';
+import {Button} from "@heroui/react";
 
 const NavBar = () => {
     // const { data: session, isPending } = authClient.useSession()
@@ -33,6 +34,7 @@ const NavBar = () => {
 
                     <li><NavLink href="/">Home</NavLink></li>
                     <li><NavLink href="/explorecars">Explore Cars</NavLink></li>
+                    <li><NavLink href="/addcar">Add Cars</NavLink></li>
                     
 
 
@@ -58,7 +60,8 @@ const NavBar = () => {
 
 
                 <div>
-                    <Link href="/login"> <button className='btn btn-soft btn-primary'>Login</button> </Link>
+                    <Link href="/login"> <Button variant="danger">Login</Button> </Link>
+                     
 
                     <Link href="/register"> <button className='btn btn-soft btn-primary'>Register</button> </Link>
                 </div>
