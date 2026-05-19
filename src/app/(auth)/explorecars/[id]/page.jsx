@@ -1,6 +1,6 @@
 
-import BookingForm from "@/components/BookingForm";
-import BookingSection from "@/components/BookingSection";
+
+import BookingCard from "@/components/BookingCard";
 import Image from "next/image";
 import { FaBangladeshiTakaSign } from "react-icons/fa6";
 
@@ -57,40 +57,27 @@ export default async function CarDetailPage({ params }) {
             </div>
 
             <div className="p-3 bg-gray-100 rounded-lg">
-              <p className="text-gray-500">Breed</p>
-              <p className="font-semibold">{animal.breed}</p>
+              <p className="text-gray-500">Rent Price</p>
+              <p className="font-semibold">${rentPrice}/Day</p>
             </div>
 
             <div className="p-3 bg-gray-100 rounded-lg">
-              <p className="text-gray-500">Age</p>
-              <p className="font-semibold">{animal.age} Years</p>
+              <p className="text-gray-500">Capacity</p>
+              <p className="font-semibold">{capacity} Seats</p>
             </div>
 
             <div className="p-3 bg-gray-100 rounded-lg">
-              <p className="text-gray-500">Weight</p>
-              <p className="font-semibold">{animal.weight} KG</p>
+              <p className="text-gray-500">Availabil</p>
+              <p className="font-semibold">{availabil}</p>
             </div>
-
-            <div className="p-3 bg-gray-100 rounded-lg">
-              <p className="text-gray-500">Location</p>
-              <p className="font-semibold">{animal.location}</p>
-            </div>
-
-            <div className="p-3 bg-gray-100 rounded-lg">
-              <p className="text-gray-500">Category</p>
-              <p className="font-semibold">{animal.category}</p>
-            </div>
+          
 
           </div>
 
 
-          <div className="flex items-center gap-2 text-2xl font-bold text-green-600 mt-3">
-            <FaBangladeshiTakaSign />
-            {animal.price}
-          </div>
 
 
-          <BookingSection></BookingSection>
+          <BookingCard cars={cars}/>
 
 
 

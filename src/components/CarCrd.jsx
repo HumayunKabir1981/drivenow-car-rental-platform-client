@@ -1,4 +1,7 @@
+import { Button } from '@heroui/react';
+
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 
 const CarCrd = ({ car }) => {
@@ -23,7 +26,8 @@ const CarCrd = ({ car }) => {
                 <p>Type: {carType}</p>
                 <div className="card-actions flex justify-between">
                     <h1 className='text-xl font-bold'>$ {rentPrice}/ Day</h1>
-                    <button className="btn btn-primary">Book Now</button>
+                    <Link href={`/explorecars/${_id}`}><Button variant="ghost" className={'mt-1 text-cyan-500'}>  Book Now</Button></Link>
+                    
                 </div>
             </div>
         </div>
