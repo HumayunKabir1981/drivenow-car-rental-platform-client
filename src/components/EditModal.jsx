@@ -53,7 +53,7 @@ export function EditModal({ car }) {
               <Surface variant="default">
                 <form
                     onSubmit={onSubmit}
-                    className="p-10 space-y-8 w-3xl"
+                    className="p-10 space-y-8 "
                 >
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         {/* Car Name */}
