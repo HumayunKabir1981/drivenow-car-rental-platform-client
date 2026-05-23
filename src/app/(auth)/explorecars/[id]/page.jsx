@@ -1,6 +1,8 @@
 
 
 import BookingCard from "@/components/BookingCard";
+import { DeleteAlert } from "@/components/DeleteAlert";
+import { EditModal } from "@/components/EditModal";
 import Image from "next/image";
 import { FaBangladeshiTakaSign } from "react-icons/fa6";
 
@@ -25,6 +27,11 @@ export default async function CarDetailPage({ params }) {
   return (
 
     <div className="max-w-6xl mx-auto p-6">
+
+      <div className="flex  items-center gap-3 justify-end mt-5 mb-3">
+        <EditModal  car={cars} />
+        <DeleteAlert car={cars} />
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 bg-white shadow-lg rounded-2xl p-6">
 
 
@@ -70,14 +77,14 @@ export default async function CarDetailPage({ params }) {
               <p className="text-gray-500">Availabil</p>
               <p className="font-semibold">{availabil}</p>
             </div>
-          
+
 
           </div>
 
 
 
 
-          <BookingCard cars={cars}/>
+          <BookingCard cars={cars} />
 
 
 

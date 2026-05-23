@@ -78,7 +78,7 @@ const BookingCard = ({ cars }) => {
         onSubmit={handleBooking}
         className="p-10 space-y-8 w-3xl"
       >
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div >
           <TextField name="driverNeeded" isRequired>
             <Label>Driver Needed</Label>
             <Input placeholder="Yes/No" className="rounded-2xl" />
