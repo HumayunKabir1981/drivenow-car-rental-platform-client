@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { authClient } from "@/lib/auth-client";
 import Link from 'next/link';
 import React from 'react';
-import avater from '@/asset/user.png'
+import avater from '@/assets/user.png'
 
 const MyProfile = () => {
   const { data: session, isPending } = authClient.useSession();
