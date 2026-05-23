@@ -74,12 +74,16 @@ const NavBar = () => {
                         </Link>
 
                         {/* Logout */}
-                        <button
-                            onClick={async () => await authClient.signOut()}
-                            className="btn btn-sm btn-outline btn-error"
-                        >
-                            Logout
-                        </button>
+
+
+                        <Link href="/">
+                            <button
+                                onClick={async () => await authClient.signOut()}
+                                className="btn btn-sm btn-outline btn-error"
+                            >
+                                Logout
+                            </button>
+                        </Link>
                     </div>
                 ) : (
                     <div className="flex items-center gap-2">
