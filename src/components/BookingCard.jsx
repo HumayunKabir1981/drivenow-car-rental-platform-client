@@ -1,110 +1,127 @@
 "use client";
 
-import React from "react";
-import { Button, Card, FieldError, Input, TextField } from "@heroui/react";
-import { DateField, Label } from "@heroui/react";
+import React, { useState } from "react";
+import {
+  Button,
+  Card,
+  Input,
+  TextField,
+  Label,
+  FieldError,
+} from "@heroui/react";
 import { authClient } from "@/lib/auth-client";
 import toast from "react-hot-toast";
 
 const BookingCard = ({ cars }) => {
-
   const { data: session } = authClient.useSession();
   const user = session?.user;
-  // const [departureDate, setDepartureDate] = useState(null);
 
+  const [bookingDate, setBookingDate] = useState("");
 
   const { _id, imageUrl, carName, rentPrice, carType, capacity } = cars;
 
   const handleBooking = async (e) => {
     e.preventDefault();
-     const form = e.target;
+
+    const form = e.target;
     const driverNeeded = form.driverNeeded.value;
     const specialNote = form.specialNote.value;
 
+    if (!bookingDate) {
+      toast.error("Please select a booking date");
+      return;
+    }
+
     const bookingData = {
       userId: user?.id,
-      userImage: user?.image,
       userName: user?.name,
-      carBookibgId: _id,
+      userImage: user?.image,
+
+      carBookingId: _id,
       carName,
       carType,
       rentPrice,
       imageUrl,
       capacity,
+
+      bookingDate,
       driverNeeded,
-      specialNote
+      specialNote,
+    };
 
-    }
-  
-
-
-    // const {data:tokenData} = await authClient.token()
-
-    const res = await fetch('http://localhost:5000/booking', {
+    const res = await fetch("http://localhost:5000/booking", {
       method: "POST",
       headers: {
-        'content-type': 'application/json',
-        // authorization: `Bearer ${tokenData?.token}`
+        "content-type": "application/json",
       },
       body: JSON.stringify(bookingData),
-    })
-
+    });
 
     const data = await res.json();
-    console.log(data);
-    
 
-    // toast.success("You booked successfully!")
-
-  }
-
-
+    if (data?.insertedId || data?.success) {
+      toast.success("Car booked successfully!");
+      form.reset();
+      setBookingDate("");
+    } else {
+      toast.error("Booking failed!");
+    }
+  };
 
   return (
-    <Card className="rounded-none border mt-5">
+    <Card className="mt-6 p-6 rounded-2xl shadow-lg ">
 
+      {/* TITLE */}
+      <h2 className="text-xl font-bold mb-4 text-center">
+        Book This Car
+      </h2>
 
-      {/* <DateField onChange={setDepartureDate} className="w-[256px]" name="date">
-        <Label>Departure Date</Label>
-        <DateField.Group>
-          <DateField.Input>
-            {(segment) => <DateField.Segment segment={segment} />}
-          </DateField.Input>
-        </DateField.Group>
-      </DateField> */}
+      <form onSubmit={handleBooking} className="space-y-5">
 
-      <form
-        onSubmit={handleBooking}
-        className="p-10 space-y-8 w-3xl"
-      >
-        <div >
-          <TextField name="driverNeeded" isRequired>
-            <Label>Driver Needed</Label>
-            <Input placeholder="Yes/No" className="rounded-2xl" />
-            <FieldError />
-          </TextField>
+        {/* BOOKING DATE */}
+        <div>
+          <label className="text-sm font-medium">
+            Booking Date
+          </label>
 
-          <TextField name="specialNote" isRequired>
-            <Label>Special Note</Label>
-            <Input placeholder="Special Note" className="rounded-2xl" />
-            <FieldError />
-          </TextField>
-
+          <input
+            type="date"
+            className="w-full mt-1 p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400"
+            value={bookingDate}
+            onChange={(e) => setBookingDate(e.target.value)}
+            required
+          />
         </div>
 
-        {/* Buttons */}
+        {/* DRIVER */}
+        <TextField name="driverNeeded" isRequired>
+          <Label>Driver Needed</Label>
+          <Input
+            placeholder="Yes / No"
+            className="rounded-xl"
+          />
+          <FieldError />
+        </TextField>
 
-        {/* <Button onClick={handleBooking} className={"w-full rounded-none bg-cyan-500"}>Book Now</Button> */}
+        {/* NOTE */}
+        <TextField name="specialNote" isRequired>
+          <Label>Special Note</Label>
+          <Input
+            placeholder="Write your note..."
+            className="rounded-xl"
+          />
+          <FieldError />
+        </TextField>
+
+        {/* BUTTON */}
         <Button
           type="submit"
-          variant="outline"
-          className=" rounded-none w-full bg-cyan-500 text-white"
+          className="w-full bg-cyan-500 text-white rounded-xl py-3 font-semibold hover:bg-cyan-600 transition"
         >
           Book Now
         </Button>
 
       </form>
-
     </Card>
   );
 };
