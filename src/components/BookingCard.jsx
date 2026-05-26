@@ -1,16 +1,15 @@
 "use client";
 
+import React from "react";
 import { Button, Card, FieldError, Input, TextField } from "@heroui/react";
-import React, { useState } from "react";
 import { DateField, Label } from "@heroui/react";
-// import { FieldError, Input, Label, TextField, Button, Card } from "@heroui/react";
-// import { authClient } from "@/lib/auth-client";
-// import toast from "react-hot-toast";
+import { authClient } from "@/lib/auth-client";
+import toast from "react-hot-toast";
 
 const BookingCard = ({ cars }) => {
 
-  // const { data: session } = authClient.useSession();
-  // const user = session?.user;
+  const { data: session } = authClient.useSession();
+  const user = session?.user;
   // const [departureDate, setDepartureDate] = useState(null);
 
 
@@ -23,9 +22,9 @@ const BookingCard = ({ cars }) => {
     const specialNote = form.specialNote.value;
 
     const bookingData = {
-      // userId: user?.id,
-      // userImage: user?.image,
-      // userName: user?.name,
+      userId: user?.id,
+      userImage: user?.image,
+      userName: user?.name,
       carBookibgId: _id,
       carName,
       carType,

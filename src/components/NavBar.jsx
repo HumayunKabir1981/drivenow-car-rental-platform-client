@@ -35,7 +35,7 @@ const NavBar = () => {
                 <ul className="menu menu-horizontal px-1 text-lg text-neutral gap-2">
                     <li><NavLink href="/">Home</NavLink></li>
                     <li><NavLink href="/explorecars">Explore Cars</NavLink></li>
-                    <li><NavLink href="/addcar">Add Cars</NavLink></li>
+
                 </ul>
             </div>
 
@@ -53,37 +53,66 @@ const NavBar = () => {
                             Hi, {user?.name || "User"}
                         </span>
 
-                        {/* Avatar */}
-                        <Image
-                            src={
-                                user?.image?.startsWith("http")
-                                    ? user.image
-                                    : avater
-                            }
-                            height={40}
-                            width={40}
-                            alt="avatar"
-                            className="rounded-full border"
-                        />
 
-                        {/* Profile */}
-                        <Link href="/myprofile">
-                            <Button variant="ghost" className="text-xs">
-                                Profile
-                            </Button>
-                        </Link>
+                        {/* Profile Dropdown */}
+                        <div className="dropdown dropdown-end">
 
-                        {/* Logout */}
-
-
-                        <Link href="/">
-                            <button
-                                onClick={async () => await authClient.signOut()}
-                                className="btn btn-sm btn-outline btn-error"
+                            {/* Trigger Button */}
+                            <div
+                                tabIndex={0}
+                                role="button"
+                                className="flex items-center gap-2 cursor-pointer hover:bg-base-200 px-3 py-2 rounded-lg"
                             >
-                                Logout
-                            </button>
-                        </Link>
+                                <Image
+                                    src={
+                                        user?.image?.startsWith("http")
+                                            ? user.image
+                                            : avater
+                                    }
+                                    width={38}
+                                    height={38}
+                                    alt="avatar"
+                                    className="rounded-full border"
+                                />
+
+                                <span className="font-medium">
+                                    My Profile ▾
+                                </span>
+                            </div>
+
+                            {/* Dropdown Menu */}
+                            <ul
+                                tabIndex={0}
+                                className="menu menu-sm dropdown-content mt-3 z-[999] p-2 shadow bg-base-100 rounded-box w-56"
+                            >
+                                {/* User Info */}
+                                <li className="pointer-events-none border-b pb-2 mb-2">
+                                    <p className="font-semibold">{user?.name}</p>
+                                    <p className="text-xs text-gray-500">{user?.email}</p>
+                                </li>
+
+                                <li>
+                                    <Link href="/addcar">Add Car</Link>
+                                </li>
+
+                                <li>
+                                    <Link href="/mybookings">My Bookings</Link>
+                                </li>                              
+
+                                <li className="border-t mt-2 pt-2">
+                                    <button
+                                        onClick={async () => {
+                                            await authClient.signOut();
+                                        }}
+                                        className="text-red-500"
+                                    >
+                                        Logout
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+
+
                     </div>
                 ) : (
                     <div className="flex items-center gap-2">

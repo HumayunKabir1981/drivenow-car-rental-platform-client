@@ -8,7 +8,7 @@ const AddCarPage = () => {
         e.preventDefault()
         const formData = new FormData(e.currentTarget)
         const addcar = Object.fromEntries(formData.entries())
-        console.log(addcar)
+        
 
         // const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/destination`, {
         const res = await fetch('http://localhost:5000/addcar', {

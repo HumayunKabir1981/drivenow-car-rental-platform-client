@@ -14,10 +14,9 @@ const Footer = () => {
 
           {/* About */}
           <div>
-            <h2 className="text-3xl font-bold mb-4">QurbaniHat</h2>
+            <h2 className="text-3xl font-bold text-danger mb-4">DriveNow</h2>
             <p className="text-sm  leading-relaxed">
-              A modern livestock marketplace where users can explore animals for Qurbani such as cows and goats.
-              Users can view details and place a booking after authentication.
+              An intuitive, web-based car rental system that connects customers with the perfect vehicle for their travel needs through a seamless booking interface.
             </p>
           </div>
 
@@ -28,7 +27,7 @@ const Footer = () => {
             <div className="space-y-2 text-sm ">
               <p> Dhaka, Bangladesh</p>
               <p> +880 1234-556677</p>
-              <p> support@qurbanihat.com</p>
+              <p> support@drivenow.com</p>
             </div>
           </div>
 
@@ -61,7 +60,7 @@ const Footer = () => {
         {/* Bottom */}
         <div className="flex flex-col md:flex-row justify-between text-sm  gap-3">
 
-          <p>© 2026 QurbaniHat. All rights reserved.</p>
+          <p>© 2026 DriveNow. All rights reserved.</p>
 
           <div className="flex gap-5">
             <span className=" cursor-pointer">Privacy Policy</span>
