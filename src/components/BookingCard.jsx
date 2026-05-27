@@ -17,6 +17,7 @@ const BookingCard = ({ cars }) => {
   const user = session?.user;
 
   const [bookingDate, setBookingDate] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const { _id, imageUrl, carName, rentPrice, carType, capacity } = cars;
 
@@ -26,6 +27,11 @@ const BookingCard = ({ cars }) => {
     const form = e.target;
     const driverNeeded = form.driverNeeded.value;
     const specialNote = form.specialNote.value;
+
+    if (!user) {
+      toast.error("Please login first!");
+      return;
+    }
 
     if (!bookingDate) {
       toast.error("Please select a booking date");
@@ -49,27 +55,38 @@ const BookingCard = ({ cars }) => {
       specialNote,
     };
 
-    const res = await fetch("http://localhost:5000/booking", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(bookingData),
-    });
+    try {
+      setLoading(true);
 
-    const data = await res.json();
+      const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/booking`, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(bookingData),
+      });
 
-    if (data?.insertedId || data?.success) {
-      toast.success("Car booked successfully!");
+      if (!res.ok) {
+        throw new Error("Booking failed");
+      }
+
+      await res.json();
+
+      toast.success("🎉 Booking Successful!");
+
       form.reset();
       setBookingDate("");
-    } else {
-      toast.error("Booking failed!");
+
+    } catch (error) {
+      console.log(error);
+      toast.error("❌ Booking failed. Try again!");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <Card className="mt-6 p-6 rounded-2xl shadow-lg ">
+    <Card className="mt-6 p-6 rounded-2xl shadow-lg border">
 
       {/* TITLE */}
       <h2 className="text-xl font-bold mb-4 text-center">
@@ -116,9 +133,14 @@ const BookingCard = ({ cars }) => {
         {/* BUTTON */}
         <Button
           type="submit"
-          className="w-full bg-cyan-500 text-white rounded-xl py-3 font-semibold hover:bg-cyan-600 transition"
+          disabled={loading}
+          className={`w-full text-white rounded-xl py-3 font-semibold transition ${
+            loading
+              ? "bg-gray-400 cursor-not-allowed"
+              : "bg-cyan-500 hover:bg-cyan-600"
+          }`}
         >
-          Book Now
+          {loading ? "Booking..." : "Book Now"}
         </Button>
 
       </form>

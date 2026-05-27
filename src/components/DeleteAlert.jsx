@@ -8,7 +8,7 @@ export function DeleteAlert({ car }) {
   const { _id, carName } = car;
 
   const handleDelete = async () => {
-    const res = await fetch(`http://localhost:5000/addcar/${_id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/addcar/${_id}`, {
       method: "DELETE",
       headers: {
         "content-type": "application/json",

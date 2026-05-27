@@ -8,8 +8,10 @@ import avater from "@/assets/user.png";
 import { authClient } from "@/lib/auth-client";
 import NavLink from "./NavLink";
 import { Button } from "@heroui/react";
+import { useRouter } from "next/navigation";
 
 const NavBar = () => {
+    const router = useRouter();
     const { data: session, isPending } = authClient.useSession();
 
     const user = session?.user;
@@ -97,12 +99,13 @@ const NavBar = () => {
 
                                 <li>
                                     <Link href="/mybookings">My Bookings</Link>
-                                </li>                              
+                                </li>
 
                                 <li className="border-t mt-2 pt-2">
                                     <button
                                         onClick={async () => {
                                             await authClient.signOut();
+                                            router.push("/");
                                         }}
                                         className="text-red-500"
                                     >

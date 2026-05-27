@@ -23,7 +23,7 @@ export function EditModal({ car }) {
     const formData = new FormData(e.currentTarget);
     const updatecar = Object.fromEntries(formData.entries());
 
-    const res = await fetch(`http://localhost:5000/addcar/${_id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/addcar/${_id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",

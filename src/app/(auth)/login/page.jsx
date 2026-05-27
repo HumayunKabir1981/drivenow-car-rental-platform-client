@@ -36,7 +36,7 @@ const LoginPage = () => {
         <div className='container mx-auto bg-slate-100 flex flex-col gap-10 items-center justify-center h-screen '>
 
             <div className='flex flex-col gap-10 items-center justify-center  '>
-                <h1 className='text-xl font-semibold text-green-900 mt-5'>to continue to QurbaniHat</h1>
+                <h1 className='text-xl font-semibold text-green-900 mt-5'>to continue to DriveNow</h1>
                 <button
                     onClick={handleGoogleSignin}
                     className='btn btn-primary w-full flex justify-between items-center px-4 h-14'
