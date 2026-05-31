@@ -1,75 +1,159 @@
-import React from 'react';
-import { FaFacebookSquare } from 'react-icons/fa';
-import { FaXTwitter } from 'react-icons/fa6';
-import { IoLogoInstagram } from 'react-icons/io5';
+import React from "react";
+import Link from "next/link";
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaTwitter,
+} from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="w-full bg-amber-50 ">
+    <footer className="bg-slate-950 text-slate-300 mt-20">
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-20 py-14">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 py-14">
 
-        {/* Top Section */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+        {/* TOP */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
 
-          {/* About */}
+          {/* BRAND */}
           <div>
-            <h2 className="text-3xl font-bold text-danger mb-4">DriveNow</h2>
-            <p className="text-sm  leading-relaxed">
-              An intuitive, web-based car rental system that connects customers with the perfect vehicle for their travel needs through a seamless booking interface.
+            <h2 className="text-3xl font-extrabold text-cyan-400 mb-4">
+              DriveNow
+            </h2>
+
+            <p className="text-sm leading-7 text-slate-400">
+              Premium car rental platform providing smooth booking,
+              reliable vehicles, and seamless travel experiences.
             </p>
           </div>
 
-          {/* Contact */}
+          {/* QUICK LINKS */}
           <div>
-            <h2 className="text-xl font-semibold mb-4">Contact Info</h2>
+            <h3 className="text-lg font-semibold text-white mb-4">
+              Quick Links
+            </h3>
 
-            <div className="space-y-2 text-sm ">
-              <p> Dhaka, Bangladesh</p>
-              <p> +880 1234-556677</p>
-              <p> support@drivenow.com</p>
+            <ul className="space-y-3 text-sm">
+              <li>
+                <Link
+                  href="/"
+                  className="hover:text-cyan-400 transition"
+                >
+                  Home
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  href="/explorecars"
+                  className="hover:text-cyan-400 transition"
+                >
+                  Explore Cars
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  href="/mybookings"
+                  className="hover:text-cyan-400 transition"
+                >
+                  My Bookings
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  href="/addcar"
+                  className="hover:text-cyan-400 transition"
+                >
+                  Add Car
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* CONTACT */}
+          <div>
+            <h3 className="text-lg font-semibold text-white mb-4">
+              Contact
+            </h3>
+
+            <div className="space-y-3 text-sm text-slate-400">
+              <p>📍 Dhaka, Bangladesh</p>
+              <p>📞 +880 1234-556677</p>
+              <p>✉ support@drivenow.com</p>
             </div>
           </div>
 
-          {/* Social */}
+          {/* SOCIAL */}
           <div>
-            <h2 className="text-xl font-semibold mb-4">Follow Us</h2>
+            <h3 className="text-lg font-semibold text-white mb-4">
+              Follow Us
+            </h3>
 
-            <div className="flex gap-3">
+            <div className="flex gap-4">
 
-              <a className="h-10 w-10 rounded-full flex items-center justify-center text-black hover:scale-110 transition">
-                <IoLogoInstagram />
+              <a
+                href="#"
+                className="h-11 w-11 rounded-full bg-slate-800 flex items-center justify-center hover:bg-cyan-500 hover:text-white transition duration-300"
+              >
+                <FaInstagram size={18} />
               </a>
 
-              <a className="h-10 w-10 rounded-full flex items-center justify-center text-black hover:scale-110 transition">
-                <FaFacebookSquare />
+              <a
+                href="#"
+                className="h-11 w-11 rounded-full bg-slate-800 flex items-center justify-center hover:bg-cyan-500 hover:text-white transition duration-300"
+              >
+                <FaFacebookF size={18} />
               </a>
 
-              <a className="h-10 w-10  rounded-full flex items-center justify-center text-black hover:scale-110 transition">
-                <FaXTwitter />
+              <a
+                href="#"
+                className="h-11 w-11 rounded-full bg-slate-800 flex items-center justify-center hover:bg-cyan-500 hover:text-white transition duration-300"
+              >
+                <FaTwitter size={18} />
               </a>
-
             </div>
-          </div>
 
+            <p className="text-xs text-slate-500 mt-4 leading-6">
+              Stay connected for offers, new cars, and travel updates.
+            </p>
+          </div>
         </div>
 
-        {/* Divider */}
-        <div className="h-[1px]  my-8"></div>
+        {/* DIVIDER */}
+        <div className="border-t border-slate-800 my-10"></div>
 
-        {/* Bottom */}
-        <div className="flex flex-col md:flex-row justify-between text-sm  gap-3">
+        {/* BOTTOM */}
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-500">
 
-          <p>© 2026 DriveNow. All rights reserved.</p>
+          <p>
+            © 2026 DriveNow. All rights reserved.
+          </p>
 
           <div className="flex gap-5">
-            <span className=" cursor-pointer">Privacy Policy</span>
-            <span className=" cursor-pointer">Terms</span>
-            <span className=" cursor-pointer">Cookies</span>
+            <Link
+              href="/privacy"
+              className="hover:text-cyan-400 transition"
+            >
+              Privacy Policy
+            </Link>
+
+            <Link
+              href="/terms"
+              className="hover:text-cyan-400 transition"
+            >
+              Terms
+            </Link>
+
+            <Link
+              href="/cookies"
+              className="hover:text-cyan-400 transition"
+            >
+              Cookies
+            </Link>
           </div>
-
         </div>
-
       </div>
     </footer>
   );
