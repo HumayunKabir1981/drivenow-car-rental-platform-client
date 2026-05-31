@@ -18,7 +18,7 @@ const ExploreCarsPage = async() => {
             </div>
 
 
-            <div className="grid grid-cols-4 gap-5">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-5">
                 {
                     cars.map(car => <CarCrd key={car._id} car={car}/>)
                 }

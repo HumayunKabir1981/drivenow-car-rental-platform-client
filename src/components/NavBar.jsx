@@ -20,7 +20,7 @@ const NavBar = () => {
   return (
     <nav className="sticky top-0 z-50 backdrop-blur-md bg-slate-950/90 border-b border-slate-800 shadow-lg">
 
-      <div className="max-w-7xl mx-auto navbar px-5 lg:px-8 h-[78px]">
+      <div className="max-w-8xl mx-auto navbar px-5 lg:px-8 h-[78px]">
 
         {/* LEFT */}
         <div className="navbar-start">
@@ -56,9 +56,9 @@ const NavBar = () => {
             <Image
               src={logo}
               alt="logo"
-              width={145}
-              height={80}
-              className="object-cover"
+              width={100}
+              height={50}
+              className="rounded-xl bg-accent-soft-hover"
             />
           </Link>
         </div>
