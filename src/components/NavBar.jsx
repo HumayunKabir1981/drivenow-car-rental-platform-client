@@ -93,6 +93,10 @@ const NavBar = () => {
                                     <p className="text-xs text-gray-500">{user?.email}</p>
                                 </li>
 
+                                 <li>
+                                    <Link href="/myprofile">My Profile</Link>
+                                </li>
+
                                 <li>
                                     <Link href="/addcar">Add Car</Link>
                                 </li>
